@@ -9,6 +9,11 @@ namespace MatthewSpencer\FileSystemCache;
 class Client {
 
 	/**
+	 * @var string $path
+	 */
+	public static $path = '';
+
+	/**
 	 * Set Cache Item
 	 *
 	 * @param string $key
@@ -86,13 +91,15 @@ class Client {
 	 * @return string $path
 	 */
 	private static function cache_path() {
-		$path = dirname( __DIR__ ) . '/cache/';
-
-		if ( ! file_exists( $path ) ) {
-			mkdir( $path );
+		if ( empty( self::$path ) ) {
+			self::$path = dirname( __DIR__ ) . '/cache/';
 		}
 
-		return $path;
+		if ( ! file_exists( self::$path ) ) {
+			mkdir( self::$path );
+		}
+
+		return self::$path;
 	}
 
 	/**
