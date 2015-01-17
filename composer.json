@@ -1,0 +1,12 @@
+{
+    "name": "matthewspencer/php-filesystem-cache",
+    "description": "Simple file system cache class",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthew Spencer",
+            "email": "hello@thisismatthew.com"
+        }
+    ],
+    "require": {}
+}
