@@ -8,5 +8,7 @@
             "email": "hello@thisismatthew.com"
         }
     ],
-    "require": {}
+    "autoload": {
+        "psr-4": { "MatthewSpencer\\FileSystemCache\\": "src" }
+    }
 }
