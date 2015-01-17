@@ -31,13 +31,13 @@ class Client {
 		$timestamp = time();
 
 		// serialize data with timestamp
-		$serialized_data = serialize( array('timestamp' => $timestamp, 'data' => $data) );
+		$serialized_data = serialize( array( 'timestamp' => $timestamp, 'data' => $data ) );
 
 		// write cache
 		$cache_set = file_put_contents( $cache_path . $filename, $serialized_data );
 
 		// file_put_contents() returns false on failure, number of bytes written on success
-		$cache_set = ( $cache_set === false ? $cache_set : true );
+		$cache_set = $cache_set === false ? $cache_set : true;
 
 		return $cache_set;
 	}
@@ -65,13 +65,17 @@ class Client {
 		$serialized_data = @file_get_contents( $cache_path . $filename );
 
 		// file_get_contents() returns false on failure
-		if ( $serialized_data === false || empty($serialized_data) ) return false;
+		if ( $serialized_data === false || empty( $serialized_data ) ) {
+			return false;
+		}
 
 		$cache = unserialize( $serialized_data );
 		extract( $cache );
 
 		// return false if cache is expired
-		if ( time() > ($timestamp + $duration) ) return false;
+		if ( time() > ( $timestamp + $duration ) ) {
+			return false;
+		}
 
 		return $data;
 	}
@@ -82,10 +86,10 @@ class Client {
 	 * @return string $path
 	 */
 	private static function cache_path() {
-		$path = dirname(__DIR__) . '/cache/';
+		$path = dirname( __DIR__ ) . '/cache/';
 
-		if ( ! file_exists($path) ) {
-			mkdir($path);
+		if ( ! file_exists( $path ) ) {
+			mkdir( $path );
 		}
 
 		return $path;
@@ -116,7 +120,7 @@ class Client {
 			'-',
 		);
 
-		$key = strtolower( str_replace($search, $replace, $key) );
+		$key = strtolower( str_replace( $search, $replace, $key ) );
 
 		return $key;
 	}
