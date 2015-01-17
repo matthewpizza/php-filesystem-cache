@@ -3,10 +3,10 @@
 namespace MatthewSpencer\FileSystemCache;
 
 /**
- * Cache
+ * Cache Client
  */
 
-class Cache {
+class Client {
 
 	/**
 	 * Set Cache Item
